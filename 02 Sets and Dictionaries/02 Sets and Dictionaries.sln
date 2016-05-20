@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10 Population Counter", "10
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15 Rubiks Matrix", "15 Rubiks Matrix\15 Rubiks Matrix.csproj", "{3A9BBD87-4AFF-4F88-B57F-2B7C554AB002}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11 Logs Aggregator", "11 Logs Aggregator\11 Logs Aggregator.csproj", "{4CE50ACE-3B1F-4F74-AE05-9318FA792449}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{3A9BBD87-4AFF-4F88-B57F-2B7C554AB002}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A9BBD87-4AFF-4F88-B57F-2B7C554AB002}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A9BBD87-4AFF-4F88-B57F-2B7C554AB002}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CE50ACE-3B1F-4F74-AE05-9318FA792449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CE50ACE-3B1F-4F74-AE05-9318FA792449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CE50ACE-3B1F-4F74-AE05-9318FA792449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CE50ACE-3B1F-4F74-AE05-9318FA792449}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
