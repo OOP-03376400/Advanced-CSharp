@@ -27,7 +27,7 @@ namespace Legendary_Farming
                     int quantity = int.Parse(data[i]);
                     string material = data[i + 1];
 
-                    if (!keyMaterials.ContainsKey(material))    // just items
+                    if (!keyMaterials.ContainsKey(material))    // junk items
                     {
                         if (!junkItems.ContainsKey(material))
                             junkItems[material] = 0;
