@@ -40,7 +40,7 @@ namespace Legendary_Farming
                             if (material == keyMaterial.Key)
                             {
                                 Console.WriteLine($"{keyMaterial.Value} obtained!");
-                                materials[material] -= 250;
+                                materials[material] -= 250; break;
                             }
                         itemObtained = true;
 
