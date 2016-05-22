@@ -60,15 +60,13 @@ namespace Rubiks_Matrix
         {
             for (int command = 0; command < numberOfCommands; command++)
             {
-                string[] input = Console.ReadLine()
-                                .Split(' ')
-                                .ToArray();
+                string[] input = Console.ReadLine().Split(' ').ToArray();
                 int rowColToRotate = int.Parse(input[0]);
                 string rotationDirection = input[1];
                 int numberOfRotations = int.Parse(input[2]);
-                bool rowRotation = rotationDirection == "left" 
+                bool rowRotation = rotationDirection == "left"
                                 || rotationDirection == "right";
-                bool colRotation = rotationDirection == "up" 
+                bool colRotation = rotationDirection == "up"
                                 || rotationDirection == "down";
                 if (rowRotation)
                     numberOfRotations %= matrix.GetLength(1);   // cols
@@ -85,85 +83,66 @@ namespace Rubiks_Matrix
             return matrix;
         }
 
-        static int[,] RotateMatrixRow(int[,] matrix, int rowToRotate, string rotationDirection)
+        static int[,] RotateMatrixRow(int[,] matrix, int row, string direction)
         {
-            int rows = matrix.GetLength(0);
-            int cols = matrix.GetLength(1);
-            int[] rotatedRow = new int[cols];
-            // get rotated Row elements
-            if (rotationDirection == "left")
-            {
-                for (int col = 0; col < cols - 1; col++)
-                    rotatedRow[col] = matrix[rowToRotate, col + 1]; // rotated[col] = original[col+1]
-                rotatedRow[cols - 1] = matrix[rowToRotate, 0];      // rotated[LastCol] = original[0]
-            }
-            else if (rotationDirection == "right")
-            {
-                rotatedRow[0] = matrix[rowToRotate, cols - 1];      // rotated[0] = original[LastCol]
-                for (int col = 1; col < cols; col++)
-                    rotatedRow[col] = matrix[rowToRotate, col - 1]; // rotated[col] = original[col-1]
-            }
-            // update rotated row in matrix 
-            for (int col = 0; col < cols; col++)
-                matrix[rowToRotate, col] = rotatedRow[col];
+            int[] rotatedRow = new int[matrix.GetLength(1)];    // cols
+            for (int col = 0; col < matrix.GetLength(1); col++) // cols
+                rotatedRow[col] = matrix[row, col];
+            if (direction == "left")
+                rotatedRow = rotatedRow.Skip(1).Take(rotatedRow.Length - 1)
+                            .Concat(rotatedRow.Take(1))
+                            .ToArray();
+            else if (direction == "right")
+                rotatedRow = rotatedRow.Skip(rotatedRow.Length - 1).Take(1)
+                            .Concat(rotatedRow.Take(rotatedRow.Length - 1))
+                            .ToArray();
+            for (int col = 0; col < matrix.GetLength(1); col++) // cols
+                matrix[row, col] = rotatedRow[col];
             return matrix;
         }
 
-        static int[,] RotateMatrixCol(int[,] matrix, int colToRotate, string rotationDirection)
+        static int[,] RotateMatrixCol(int[,] matrix, int col, string direction)
         {
-            int rows = matrix.GetLength(0);
-            int cols = matrix.GetLength(1);
-            int[] rotatedCol = new int[rows];
-            // get rotated Col elements
-            if (rotationDirection == "down")
-            {
-                rotatedCol[0] = matrix[rows - 1, colToRotate];      // rotated[0] = original[LastRow]
-                for (int row = 1; row < rows; row++)
-                    rotatedCol[row] = matrix[row - 1, colToRotate]; // rotated[row] = original[row-1]
-            }
-            else if (rotationDirection == "up")
-            {
-                for (int row = 0; row < rows - 1; row++)
-                    rotatedCol[row] = matrix[row + 1, colToRotate]; // rotated[row] = original[row+1]
-                rotatedCol[rows - 1] = matrix[0, colToRotate];      // rotated[LastRow] = original[0]
-            }
-            // update rotated col in matrix
-            for (int row = 0; row < rows; row++)
-                matrix[row, colToRotate] = rotatedCol[row];
+            int[] rotatedCol = new int[matrix.GetLength(0)];    // rows
+            for (int row = 0; row < matrix.GetLength(0); row++) // rows
+                rotatedCol[row] = matrix[row, col];
+            if (direction == "down")
+                rotatedCol = rotatedCol.Skip(rotatedCol.Length - 1).Take(1)
+                            .Concat(rotatedCol.Take(rotatedCol.Length - 1))
+                            .ToArray();
+            else if (direction == "up")
+                rotatedCol = rotatedCol.Skip(1).Take(rotatedCol.Length - 1)
+                            .Concat(rotatedCol.Take(1))
+                            .ToArray();
+            for (int row = 0; row < matrix.GetLength(0); row++) // rows
+                matrix[row, col] = rotatedCol[row];
             return matrix;
-        }
-
-        static int[,] CopyMatrix(int[,] matrix)
-        {
-            int rows = matrix.GetLength(0);
-            int cols = matrix.GetLength(1);
-            int[,] matrixCopy = new int[rows, cols];
-            for (int row = 0; row < rows; row++)
-            {
-                for (int col = 0; col < cols; col++)
-                    matrixCopy[row, col] = matrix[row, col];
-            }
-            return matrixCopy;
         }
 
         static void PrintMatrix(int[,] matrix)
         {
-            int rows = matrix.GetLength(0);
-            int cols = matrix.GetLength(1);
-            for (int row = 0; row < rows; row++)
+            for (int row = 0; row < matrix.GetLength(0); row++)     // rows
             {
-                for (int col = 0; col < cols; col++)
+                for (int col = 0; col < matrix.GetLength(1); col++) // cols
                     Console.Write("{0} ", matrix[row, col]);
                 Console.WriteLine();
             }
         }
 
+        static int[,] CopyMatrix(int[,] matrix)
+        {
+            int[,] matrixCopy = new int[matrix.GetLength(0), matrix.GetLength(1)];
+            for (int row = 0; row < matrix.GetLength(0); row++)     // rows
+            {
+                for (int col = 0; col < matrix.GetLength(1); col++) // cols
+                    matrixCopy[row, col] = matrix[row, col];
+            }
+            return matrixCopy;
+        }
+
         static int[,] GetMatrix()
         {
-            int[] dimensions = Console.ReadLine()
-                            .Split(' ')
-                            .Select(int.Parse)
-                            .ToArray();
+            int[] dimensions = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
             int rows = dimensions[0];
             int cols = dimensions[1];
             int[,] matrix = new int[rows, cols];
