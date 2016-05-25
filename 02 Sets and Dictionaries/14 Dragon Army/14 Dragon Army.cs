@@ -34,13 +34,13 @@ namespace Dragon_Army
             }
             foreach (var dragonTypePair in dragonStats) 
             {
-				// stats by dragon type
-				Console.WriteLine("{0}::({1:f2}/{2:f2}/{3:f2})",	
-                    dragonTypePair.Key, 							
-                    dragonTypePair.Value.Select(x => x.Value[0]).Average(),
-					dragonTypePair.Value.Select(x => x.Value[1]).Average(), 
-					dragonTypePair.Value.Select(x => x.Value[2]).Average()); 
-				// stats by dragon
+		// stats by dragon type
+		Console.WriteLine("{0}::({1:f2}/{2:f2}/{3:f2})",	
+                	dragonTypePair.Key, 							
+                	dragonTypePair.Value.Select(x => x.Value[0]).Average(),
+			dragonTypePair.Value.Select(x => x.Value[1]).Average(), 
+			dragonTypePair.Value.Select(x => x.Value[2]).Average()); 
+		// stats by dragon
                 foreach (var dragon in dragonStats[dragonTypePair.Key].OrderBy(x => x.Key))	
                     Console.WriteLine("-{0} -> damage: {1}, health: {2}, armor: {3}",
                         dragon.Key, 
