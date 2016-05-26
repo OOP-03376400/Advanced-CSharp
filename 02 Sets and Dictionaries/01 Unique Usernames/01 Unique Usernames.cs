@@ -11,10 +11,9 @@ namespace Unique_Usernames
         static void Main(string[] args)
         {
             int n = int.Parse(Console.ReadLine());
-            string[] usernames = new string[n];
+            HashSet<string> uniqueUsernames = new HashSet<string>();
             for (int i = 0; i < n; i++)
-                usernames[i] = Console.ReadLine();
-            HashSet<string> uniqueUsernames = new HashSet<string>(usernames);
+                uniqueUsernames.Add(Console.ReadLine());
             Console.WriteLine(string.Join("\n", uniqueUsernames));
         }
     }

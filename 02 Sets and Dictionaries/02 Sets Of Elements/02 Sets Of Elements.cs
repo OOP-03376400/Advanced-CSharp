@@ -14,17 +14,14 @@ namespace Sets_Of_Elements
                         .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
                         .Select(int.Parse)
                         .ToArray();
-            int[] arrayN = new int[size[0]];
-            int[] arrayM = new int[size[1]];
-
-            for (int i = 0; i < arrayN.Length; i++)
-                arrayN[i] = int.Parse(Console.ReadLine());
-            for (int i = 0; i < arrayM.Length; i++)
-                arrayM[i] = int.Parse(Console.ReadLine());
-
-            HashSet<int> setN = new HashSet<int>(arrayN);
-            HashSet<int> setM = new HashSet<int>(arrayM);
-
+            int sizeN = size[0];
+            int sizeM = size[1];
+            HashSet<int> setN = new HashSet<int>();
+            HashSet<int> setM = new HashSet<int>();
+            for (int i = 0; i < sizeN; i++)
+                setN.Add(int.Parse(Console.ReadLine()));
+            for (int i = 0; i < sizeM; i++)
+                setM.Add(int.Parse(Console.ReadLine()));
             setN.IntersectWith(setM);
             Console.WriteLine(string.Join(" ", setN));
         }

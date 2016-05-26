@@ -10,10 +10,10 @@ namespace Logs_Aggregator
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
-            SortedDictionary<string, HashSet<string>> userIPAddresses = new SortedDictionary<string, HashSet<string>>();
-            SortedDictionary<string, int> userSessionDuration = new SortedDictionary<string, int>();
+            // user, IP address, session duration
+            SortedDictionary<string, SortedDictionary<string, int>> userLogs = new SortedDictionary<string, SortedDictionary<string, int>>();
 
+            int n = int.Parse(Console.ReadLine());
             for (int i = 0; i < n; i++)
             {
                 string[] data = Console.ReadLine()
@@ -22,20 +22,18 @@ namespace Logs_Aggregator
                 string user = data[1];
                 int sessionDuration = int.Parse(data[2]);
 
-                if (!userIPAddresses.ContainsKey(user))
-                {
-                    userIPAddresses[user] = new HashSet<string>();
-                    userSessionDuration[user] = 0;
-                }
-                userIPAddresses[user].Add(ipAddress);
-                userSessionDuration[user] += sessionDuration;                
+                if (!userLogs.ContainsKey(user))
+                    userLogs[user] = new SortedDictionary<string, int>();
+                if (!userLogs[user].ContainsKey(ipAddress))
+                    userLogs[user][ipAddress] = 0;
+                userLogs[user][ipAddress] += sessionDuration;
             }
-            foreach (var user in userSessionDuration)
+            foreach (var userPair in userLogs)
             {
-                Console.WriteLine("{0}: {1} [{2}]", 
-                    user.Key, 
-                    user.Value, 
-                    string.Join(", ", userIPAddresses[user.Key].OrderBy(x => x)));
+                Console.WriteLine("{0}: {1} [{2}]",
+                    userPair.Key,
+                    userPair.Value.Select(x => x.Value).Sum(),
+                    string.Join(", ", userPair.Value.Select(x => x.Key)));
             }
         }
     }
