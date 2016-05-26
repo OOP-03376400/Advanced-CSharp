@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "16 Target Practice", "16 Ta
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "14 Dragon Army", "14 Dragon Army\14 Dragon Army.csproj", "{EC35F308-745A-4537-B0B6-D50C503C31F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "17 Lego Blocks", "17 Lego Blocks\17 Lego Blocks.csproj", "{2B3D94F2-8905-497A-8D84-22F4F6B4156B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{EC35F308-745A-4537-B0B6-D50C503C31F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC35F308-745A-4537-B0B6-D50C503C31F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC35F308-745A-4537-B0B6-D50C503C31F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B3D94F2-8905-497A-8D84-22F4F6B4156B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3D94F2-8905-497A-8D84-22F4F6B4156B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3D94F2-8905-497A-8D84-22F4F6B4156B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3D94F2-8905-497A-8D84-22F4F6B4156B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
